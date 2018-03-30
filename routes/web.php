@@ -28,5 +28,6 @@ Route::prefix('user')->group(function(){
     });
     Route::middleware('auth')->group(function(){
         Route::get('/logout', 'UserController@logout')->name('user.logout');
+        Route::post('/order','OrderController@authOrder')->name('user.order');
     });
 });

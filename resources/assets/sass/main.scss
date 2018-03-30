@@ -49,3 +49,34 @@ section#userSignin{
         }
     }
 }
+
+//Register Popup
+.signup-popup{
+    .signup{
+        h1{
+            margin-bottom: 15px;
+        }
+        form {
+            padding: 0 60px;
+            input{
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+                padding: 5px;  
+                transition: all 0.3s ease; 
+                border: 1px solid #e3e3e3;
+            }
+            input::-webkit-input-placeholder       {text-indent: 0px;   transition: text-indent 0.5s ease;}
+            input::-moz-placeholder                {text-indent: 0px;   transition: text-indent 0.5s ease;}
+            input:-moz-placeholder                 {text-indent: 0px;   transition: text-indent 0.5s ease;}
+            input:-ms-input-placeholder            {text-indent: 0px;   transition: text-indent 0.5s ease;}
+            input:focus::-webkit-input-placeholder {text-indent: 500px; transition: text-indent 0.5s ease;}
+            input:focus::-moz-placeholder          {text-indent: 500px; transition: text-indent 0.5s ease;}
+            input:focus:-moz-placeholder           {text-indent: 500px; transition: text-indent 0.5s ease;}
+            input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-indent 0.5s ease;}
+        }
+    }
+    .signup-success{
+        display: none;
+    }
+}

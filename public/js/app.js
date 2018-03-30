@@ -996,11 +996,7 @@ window.Vue = __webpack_require__(35);
 Vue.component('pizza', __webpack_require__(38));
 
 var app = new Vue({
-  el: '#pizza'
-});
-
-$(document).ready(function () {
-  alert(1);
+  el: '#app'
 });
 
 /***/ }),

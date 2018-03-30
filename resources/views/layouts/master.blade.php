@@ -25,6 +25,7 @@
 	<!-- iOS Safari -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="#000">
 	<link rel="stylesheet" href="{{URL::to('/css/main.min.css')}}">
+	<link rel="stylesheet" href="{{URL::to('/css/app.css')}}">
 	@yield('links')
 </head>
 <body>

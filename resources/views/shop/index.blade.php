@@ -303,19 +303,24 @@
 		</div>
 	@endauth
 	{{--  Register Popup  --}}
-	<div class="remodal" data-remodal-id="signup" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+	<div class="remodal signup-popup" data-remodal-id="signup" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
 
 			<button data-remodal-action="close" class="remodal-close"></button>
 			<div class="remodal-content">
 				<div class="signup">
 					<h1>Регистрация</h1> 
-					<form>
-						<input type="text" placeholder="*ФИО" id="signupName">
-						<input type="text" placeholder="*Email" id="signupEmail">
-						<input type="text" placeholder="*Телефон" id="signupPhone">
-						<input type="text" placeholder="*Адрес" id="signupAddress">
-						
+					<form id="formSignup">
+						<input type="text"  class="signupInput" placeholder="*ФИО" id="signupName">
+						<input type="email"  class="signupInput" placeholder="*Email" id="signupEmail" >
+						<input type="text"  class="signupInput" placeholder="*Телефон" id="signupPhone">
+						<input type="text" class="signupInput"  placeholder="*Адрес" id="signupAddress">
+						<input type="password"  class="signupInput" placeholder="*Пароль" id="signupPassword">
+						<input type="password" placeholder="*Подтверждение пароля" id="resignupPassword">
+						<button class="fast-btn" id="signupBtn">Зарегистрироваться</button>
 					</form>
+				</div>
+				<div class="signup-success">
+					<p>Вы успешно зарегистрировались!</p>
 				</div>
 			</div>
 		</div>

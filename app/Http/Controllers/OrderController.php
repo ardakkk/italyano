@@ -45,4 +45,7 @@ class OrderController extends Controller
 
         return response()->json(['success' => 'Успешно заказано!']);
     }
+    public function authOrder(Request $request){
+        return response()->json($request);
+    }
 }
