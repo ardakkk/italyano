@@ -24,7 +24,7 @@ Route::prefix('user')->group(function(){
         Route::post('/signin','UserController@postSignIn')->name('user.signin');
         Route::get('/signin','UserController@getSignIn')->name('user.signin');
         Route::get('/signup','UserController@getSignup')->name('user.signup');
-        Route::post('/signup','UserController@postSignup')->name('user.signup');
+        Route::post('/signup','UserController@postSignUp')->name('user.signup');
     });
     Route::middleware('auth')->group(function(){
         Route::get('/logout', 'UserController@logout')->name('user.logout');

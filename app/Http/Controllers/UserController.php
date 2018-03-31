@@ -25,7 +25,8 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->back();
     }
-    public function postSignup(Request $request){
-        return response()->json($request);
-    }
+    // public function postSignUp(Request $request){
+    //     var_dump($request);
+    //     return response()->json($request);
+    // }
 }

@@ -26,7 +26,7 @@
                     <input type="text" placeholder="Логин" id="login">
                     <input type="password" placeholder="Пароль" id="password">
                     <button type="submit" id="signin">Войти</button>
-                    <a href="javascript:void(0)" data-remodal-target="signup">Регистрация</a>
+                    <a href="#signup">Регистрация</a>
                 </form>
             </div>
             @else

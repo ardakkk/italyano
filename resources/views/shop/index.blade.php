@@ -309,7 +309,7 @@
 			<div class="remodal-content">
 				<div class="signup">
 					<h1>Регистрация</h1> 
-					<form id="formSignup">
+					<form id="formSignup" action="javascript:void(0)">
 						<input type="text"  class="signupInput" placeholder="*ФИО" id="signupName">
 						<input type="email"  class="signupInput" placeholder="*Email" id="signupEmail" >
 						<input type="text"  class="signupInput" placeholder="*Телефон" id="signupPhone">
