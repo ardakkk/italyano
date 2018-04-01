@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Order;
+use App\UserOrder;
+use App\Telegram;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -26,11 +30,7 @@ class OrderController extends Controller
         foreach($request->order as $item){
             $text['order'] .= $item['item'].' '.$item['count'].'шт'.', ';
         }
-        $txt = '';
-        foreach($text as $key => $value){
-            $txt .= "<b>".$key.":"."</b> ".$value."%0A";
-          };
-        
+       
         $order = new Order();
         $order->name = $request->name;
         $order->phone = $request->phone;
@@ -41,11 +41,56 @@ class OrderController extends Controller
         $order->cart = serialize($request->order);
         $order->save();
 
-        $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
+        $telegram = new Telegram($text);
+        $telegram->send($token, $chat_id);
 
         return response()->json(['success' => 'Успешно заказано!']);
     }
     public function authOrder(Request $request){
-        return response()->json($request);
+        $request->validate([
+            'comments' => 'required',
+            'userOrder' => 'required',
+            'totalPrice' => 'required'
+         ]);
+         $token = "522231036:AAFZDtC2uiwqtkyV9sMk8V4mCZwhoj3jk7c";
+         $chat_id = "-249785968";
+
+        $order = new UserOrder();
+        $order->cart = serialize($request->cart);
+        $order->comments = $request->comments;
+        $order->totalPrice = $request->totalPrice;
+        $order->dateOfOrder = $request->date;
+        $order->timeToOrder = $request->time;
+        Auth::user()->orders()->save($order);
+            
+        $user = User::where('phone', $request->userOrder)->first();
+        
+        $text['name'] = $user->name;
+        $text['phone'] = $user->phone;
+        $text['address'] = $user->address;
+        $text['dateOfOrder'] = $request->date;
+        $text['timeToOrder'] = $request->time;
+        $text['comments'] = $request->comments;
+        $text['order'] = '';
+        foreach($request->cart as $item){
+            $text['order'] .= $item['item'].' '.$item['count'].'шт'.', ';
+        }
+        $txt = '';
+        $telegram = new Telegram($text);    
+        $telegram->send($token, $chat_id);
+        
+        return response()->json($user);
+    }
+    public function getGift(){
+        $cookie_name = "gift";
+        $cookie_value = "taked";
+        
+        if(!isset($_COOKIE[$cookie_name])) {
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+        } else {
+            return redirect('/');
+        }
+
+        return view('shop.gift');   
     }
 }

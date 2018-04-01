@@ -25,9 +25,12 @@ Route::prefix('user')->group(function(){
         Route::get('/signin','UserController@getSignIn')->name('user.signin');
         Route::get('/signup','UserController@getSignup')->name('user.signup');
         Route::post('/signup','UserController@postSignUp')->name('user.signup');
+        
     });
     Route::middleware('auth')->group(function(){
         Route::get('/logout', 'UserController@logout')->name('user.logout');
         Route::post('/order','OrderController@authOrder')->name('user.order');
+        Route::post('/profile/edit','UserController@profileEdit')->name('profile.edit');
+        Route::get('/gift','OrderController@getGift')->name('gift');
     });
 });

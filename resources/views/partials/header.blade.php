@@ -23,10 +23,10 @@
             <div class="registr-form">	
                 <form action="javascript:void(0)" name="signin">
                     <h1>Вход в личный кабинет</h1>
-                    <input type="text" placeholder="Логин" id="login">
+                    <input type="text" placeholder="+7" id="loginPhone">
                     <input type="password" placeholder="Пароль" id="password">
                     <button type="submit" id="signin">Войти</button>
-                    <a href="#signup">Регистрация</a>
+                    <a data-remodal-target="signup">Регистрация</a>
                 </form>
             </div>
             @else
@@ -35,13 +35,20 @@
                 <ul>
                     <li><i class="fas fa-user"></i> {{Auth::user()->name}}</li>
                     <li><i class="fas fa-cart-arrow-down"></i> Заказы
-                        <ul>
-                            <li>17.04.2014: Маргарита 36 см,Coca-Cola 1лт,Салат</li>
-                            <li>17.04.2014: Маргарита 36 см,Coca-Cola 1лт,Салат</li>
+                        <ul class="order-items">
+                        @foreach($historyOrder as $order)
+                        <li>@foreach(unserialize($order->cart) as $item){{$item['item'].','}} @endforeach Итого: {{$order->totalPrice}} Время: {{$order->dateOfOrder}} {{$order->timeToOrder}} </li>
+                        @endforeach
                         </ul>
                     </li>
-                    <li><i class="fas fa-map-marker"></i> Адресс: Алматы, Сатпаева 14д.кв 9</li>
+                <li><i class="fas fa-map-marker"></i> Адресс: {{Auth::user()->address}}</li>
+                <li><i class="fas fa-envelope"></i> Email: {{Auth::user()->email}}</li>
+                <li><i class="fas fa-mobile"></i> Телефон: {{Auth::user()->phone}}</li>
+                @if($giftCount >= 3)
+                    <li><a href="/user/gift"><i class="fas fa-gift"></i> Ваш Подарок</a></li>
+                @endif
                 </ul>
+                <button id="edit" data-remodal-target="edit">Редактировать</button>
                 <button id="logout">Выйти</button>
             </div> 
             @endguest

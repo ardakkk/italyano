@@ -20,7 +20,7 @@
 				</button>
 			</div>
 			<div class="under-menu-nav">
-				<a class="personal-profile" href="javascript:void(0)">Личный кабинет</a>
+				<a class="personal-cabinet" href="#">Личный кабинет</a>
 				<nav>
 				</nav>
 				<a href="#tab" class="mobile-cart">
@@ -287,11 +287,11 @@
 
 			<button data-remodal-action="close" class="remodal-close"></button>
 			<div class="remodal-content">
-				<!-- <h1>Заказать</h1> -->
+				<h1>Заказ</h1>
 				<p class="remodal-body">
 				<b>{{Auth::user()->name}}</b> ,xотите заказать?
 				</p>
-				<p class="auth-order__total"></p>
+			<p class="auth-order__total" data-user='{{Auth::user()->phone}}'></p>
 				<button class="fast-btn" id="user-order">Заказать</button>
 				<!-- <p class="remodal-total">Итого:
 					<span class="total-price"></span>
@@ -324,6 +324,26 @@
 				</div>
 			</div>
 		</div>
+	{{-- Edit Popup --}}
+	@auth
+	<div class="remodal edit-popup" data-remodal-id="edit" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+
+			<button data-remodal-action="close" class="remodal-close"></button>
+			<div class="remodal-content">
+				<div class="edit">
+					<h1>Редактировать</h1> 
+					<form id="formEdit" action="javascript:void(0)">
+					<input type="text"  class="signupInput" placeholder="{{Auth::user()->name}}" value="{{Auth::user()->name}}" id="editName">
+					<input type="email"  class="signupInput" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}" id="editEmail">
+					<input type="text"  class="signupInput" placeholder="{{Auth::user()->phone}}" value="{{Auth::user()->phone}}" id="editPhone">
+					<input type="text" class="signupInput"  placeholder="{{Auth::user()->address}}" value="{{Auth::user()->address}}" id="editAddress">
+					<input type="hidden" value="{{Auth::user()->id}}" id="editUser">
+						<button class="fast-btn" id="editBtn">Редактировать</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	@endauth
 	<!-- top arrow button -->
 	<a href="javascript:void(0)" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 @endsection
