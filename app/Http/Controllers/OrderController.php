@@ -8,6 +8,7 @@ use App\Order;
 use App\UserOrder;
 use App\Telegram;
 use App\User;
+use App\Gift;
 
 class OrderController extends Controller
 {
@@ -92,5 +93,9 @@ class OrderController extends Controller
         }
 
         return view('shop.gift');   
+    }
+    public function postGift(Request $request){
+        
+        return response()->json($request->gift);
     }
 }

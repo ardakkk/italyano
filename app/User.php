@@ -29,4 +29,7 @@ class User extends \TCG\Voyager\Models\User
     public function orders(){
         return $this->hasMany('App\UserOrder');
     }
+    public function gifts(){
+        return $this->hasMany('App\Gift');
+    }
 }

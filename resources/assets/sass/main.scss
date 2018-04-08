@@ -97,3 +97,59 @@ section#userSignin{
     border-bottom: 1px solid #fff;
 }
 
+// Колеса Фортуны
+text{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size:14px;
+    font-weight: bolder;
+    pointer-events:none;
+}
+#chart{
+    position:absolute;
+    width:500px;
+    height:500px;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+#question{
+    position: absolute;
+    width:400px;
+    height:500px;
+    top:0;
+    right:520px;
+}
+#question h1{
+    font-size: 50px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top:50%;
+    -webkit-transform:translate(0,-50%);
+            transform:translate(0,-50%);
+}
+.list-of-gifts{
+    width: 300px;
+    background: #262626;
+    padding: 20px 10px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    ul{
+        list-style: none;
+        margin: 5px;
+        border: 1px solid #c59d5f;
+        li{
+            color: #fff;
+            margin-bottom: 15px;
+            span {
+                font-weight: bold;
+                color: #c59d5f;
+            }   
+        }
+    }
+}
