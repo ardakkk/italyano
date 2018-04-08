@@ -32,5 +32,6 @@ Route::prefix('user')->group(function(){
         Route::post('/order','OrderController@authOrder')->name('user.order');
         Route::post('/profile/edit','UserController@profileEdit')->name('profile.edit');
         Route::get('/gift','OrderController@getGift')->name('gift');
+        Route::post('/gift','OrderController@postGift')->name('gift');
     });
 });

@@ -1,52 +1,30 @@
-Popular / About Jeremy Rue’s Block a2aaf36b3c096925ccbf
-Updated January 25, 2018
-HTML & CSS Wheel Of Fortune / Bingo Game
-
-Open
-index.html#
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Wheel of Fortune Bingo</title>
-    <style type="text/css">
-    text{
-        font-family:Helvetica, Arial, sans-serif;
-        font-size:11px;
-        pointer-events:none;
-    }
-    #chart{
-        position:absolute;
-        width:500px;
-        height:500px;
-        top:0;
-        left:0;
-    }
-    #question{
-        position: absolute;
-        width:400px;
-        height:500px;
-        top:0;
-        left:520px;
-    }
-    #question h1{
-        font-size: 50px;
-        font-weight: bold;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        position: absolute;
-        padding: 0;
-        margin: 0;
-        top:50%;
-        -webkit-transform:translate(0,-50%);
-                transform:translate(0,-50%);
-    }
-    </style>
-    
-</head>
-<body>
+@extends('layouts.master')
+@section('title')
+    Колеса Фортуны 
+@endsection
+@section('links')
+<link rel="stylesheet" href="{{URL::to('/css/app.css')}}">
+@endsection
+@section('content')
     <div id="chart"></div>
-    <div id="question"><h1></h1></div>
-    
+    <div class="list-of-gifts">
+        <ul>
+            <li>№1 <span>Coca-Cola 2 л</span></li>
+            <li>№2 <span>Sprite 1 л</span></li>
+            <li>№3 <span>Пицца Маргарита</span></li>
+            <li>№4 <span>Салад Курины</span></li>
+            <li>№5 <span>Пицца Мега Пепперони + Салад Гречиский + Coca-Cola 1л</span></li>
+            <li>№6 <span>1500 тг бонус</span></li>
+        </ul>
+    </div>
+    {{-- Popup for take the gift --}}
+    <div class="remodal signup-popup" data-remodal-id="gift" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+        <div class="remodal-content">
+            <h1>Вы выграли, <span id="gift"></span>!</h1>
+            <button class="fast-btn take-btn">Получить подарок</button>
+        </div>
+    </div>
+
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         var padding = {top:20, right:40, bottom:0, left:0},
@@ -63,36 +41,12 @@ index.html#
         //http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
 
         var data = [
-                    {"label":"Question 1",  "value":1,  "question":"What CSS property is used for specifying the area between the content and its border?"}, // padding
-                    {"label":"Question 2",  "value":1,  "question":"What CSS property is used for changing the font?"}, //font-family
-                    {"label":"Question 3",  "value":1,  "question":"What CSS property is used for changing the color of text?"}, //color
-                    {"label":"Question 4",  "value":1,  "question":"What CSS property is used for changing the boldness of text?"}, //font-weight
-                    {"label":"Question 5",  "value":1,  "question":"What CSS property is used for changing the size of text?"}, //font-size
-                    {"label":"Question 6",  "value":1,  "question":"What CSS property is used for changing the background color of a box?"}, //background-color
-                    {"label":"Question 7",  "value":1,  "question":"Which word is used for specifying an HTML tag that is inside another tag?"}, //nesting
-                    {"label":"Question 8",  "value":1,  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"}, //bottom
-                    {"label":"Question 9",  "value":1,  "question":"What are the fonts that don't have serifs at the ends of letters called?"}, //sans-serif
-                    {"label":"Question 10", "value":1, "question":"With CSS selectors, what character prefix should one use to specify a class?"}, //period
-                    {"label":"Question 11", "value":1, "question":"With CSS selectors, what character prefix should one use to specify an ID?"}, //pound sign
-                    {"label":"Question 12", "value":1, "question":"In an HTML document, which tag holds all of the content people see?"}, //<body>
-                    {"label":"Question 13", "value":1, "question":"In an HTML document, which tag indicates an unordered list?"}, //<ul>
-                    {"label":"Question 14", "value":1, "question":"In an HTML document, which tag indicates the most important heading of your document?"}, //<h1>
-                    {"label":"Question 15", "value":1, "question":"What CSS property is used for specifying the area outside a box?"}, //margin
-                    {"label":"Question 16", "value":1, "question":"What type of bracket is used for HTML tags?"}, //< >
-                    {"label":"Question 17", "value":1, "question":"What type of bracket is used for CSS rules?"}, // { }
-                    {"label":"Question 18", "value":1, "question":"Which HTML tag is used for specifying a paragraph?"}, //<p>
-                    {"label":"Question 19", "value":1, "question":"What should always be the very first line of code in your HTML?"}, //<!DOCTYPE html>
-                    {"label":"Question 20", "value":1, "question":"What HTML tag holds all of the metadata tags for your page?"}, //<head>
-                    {"label":"Question 21", "value":1, "question":"In CSS, what character separates a property from a value?"}, // colon
-                    {"label":"Question 22", "value":1, "question":"What HTML tag holds all of your CSS code?"}, // <style>
-                    {"label":"Question 23", "value":1, "question":"What file extension should you use for your web pages?"}, // .html
-                    {"label":"Question 24", "value":1, "question":"Which coding language is used for marking up content and structure on a web page?"}, // HTML
-                    {"label":"Question 25", "value":1, "question":"Which coding language is used for specifying the design of a web page?"}, // CSS
-                    {"label":"Question 26", "value":1, "question":"Which coding language is used for adding functionality to a web page?"}, // JavaScript
-                    {"label":"Question 27", "value":1, "question":"What CSS property is used for making the edges of a box visible?"}, // border
-                    {"label":"Question 28", "value":1, "question":"What character symbol is used at the end of each CSS statement?"},//semi-colon
-                    {"label":"Question 29", "value":1, "question":"By default, how wide is a <div> box?"}, //100%
-                    {"label":"Question 30", "value":1, "question":"What character symbol do I use to specify multiple CSS selectors in one code block?"} //comma
+                    {"label":"№1",  "value":1,  "question":"Coca-Cola 2 л"}, // padding
+                    {"label":"№2",  "value":1,  "question":"Sprite 1 л"}, //font-family
+                    {"label":"№3",  "value":1,  "question":"Пицца Маргарита"}, //color
+                    {"label":"№4",  "value":1,  "question":"Салад Курины"}, //font-weight
+                    {"label":"№5",  "value":1,  "question":"Пицца Мега Пепперони + Салад Гречиский + Coca-Cola 1л"}, //font-size
+                    {"label":"№6",  "value":1,  "question":"1500 тг бону"}, //background-color
         ];
 
 
@@ -125,7 +79,6 @@ index.html#
         arcs.append("path")
             .attr("fill", function(d, i){ return color(i); })
             .attr("d", function (d) { return arc(d); });
-
         // add the text
         arcs.append("text").attr("transform", function(d){
                 d.innerRadius = 0;
@@ -182,8 +135,11 @@ index.html#
                         .attr("fill", "#111");
 
                     //populate question
-                    d3.select("#question h1")
+                    var inst = $('[data-remodal-id=gift]').remodal();
+                    inst.open();
+                    d3.select("#gift")
                         .text(data[picked].question);
+                    
 
                     oldrotation = rotation;
                 
@@ -210,7 +166,7 @@ index.html#
             .attr("x", 0)
             .attr("y", 15)
             .attr("text-anchor", "middle")
-            .text("SPIN")
+            .text("Крути")
             .style({"font-weight":"bold", "font-size":"30px"});
         
         
@@ -238,9 +194,24 @@ index.html#
 
             return array;
         }
-
     </script>
-</body>
-</html>
-LICENSE#
-This block appears to have no license. Please contact the author to request a license.
+@endsection
+@section('scripts')
+<script>
+  	var token = '{{Session::token() }}';
+    console.log(token);
+    var takeBtn = $('.take-btn');
+    takeBtn.click(function(){
+       var gift = document.getElementById('gift').textContent;
+       $.ajax({
+          type: 'POST',
+          url:'/user/gift',
+          typeData: 'JSON',
+          data: {gift: gift, _token: token},
+          success: function(res){
+              console.log(res);
+          } 
+       });
+    });
+</script>
+@endsection
